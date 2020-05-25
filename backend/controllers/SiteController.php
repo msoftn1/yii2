@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii\web\Response;
 
 /**
  * Контроллер для основных действий.
@@ -66,9 +67,9 @@ class SiteController extends Controller
     /**
      * Действие входа.
      *
-     * @return string
+     * @return mixed
      */
-    public function actionLogin(): string
+    public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -91,7 +92,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionLogout(): string
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
 
