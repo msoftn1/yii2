@@ -1,11 +1,10 @@
 <?php
-
 namespace backend\models;
 
 use Yii;
 
 /**
- * This is the model class for table "apple".
+ * Модель яблока.
  *
  * @property int      $id
  * @property string   $color
@@ -16,10 +15,16 @@ use Yii;
  */
 class Apple extends \yii\db\ActiveRecord
 {
+    /** Статус висит. */
     const STATUS_HANGING = 1;
+
+    /** Статус упало. */
     const STATUS_FELL    = 2;
+
+    /** Статус сгнило. */
     const STATUS_DECAYED = 3;
 
+    /** @var array Переводы статусов.  */
     private static $statuses = [
         self::STATUS_HANGING => 'Висит',
         self::STATUS_FELL    => 'Упало',
@@ -29,7 +34,7 @@ class Apple extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'apple';
     }
@@ -37,7 +42,7 @@ class Apple extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['color', 'created', 'status'], 'required'],
@@ -50,7 +55,7 @@ class Apple extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id'      => 'ID',
@@ -72,12 +77,12 @@ class Apple extends \yii\db\ActiveRecord
         $maximum = ($this->size) * 100;
 
         if ($percent < 1 || $percent > $maximum) {
-            throw new \Exception("Вы можете откусить максимум " + $maximum);
+            throw new \RuntimeException('Вы можете откусить максимум ' . $maximum);
         }
 
         $this->size -= ($percent / 100);
 
-        if ($this->size == 0) {
+        if ($this->size === 0) {
             $this->delete();
         }
         else {

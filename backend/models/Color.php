@@ -1,9 +1,8 @@
 <?php
-
 namespace backend\models;
 
 /**
- * Класс цветовю.
+ * Класс цветов.
  */
 class Color
 {

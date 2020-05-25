@@ -1,9 +1,8 @@
 <?php
-
 namespace backend\utils;
 
 /**
- * Класс утилит даты и времени
+ * Класс утилит даты и времени.
  */
 class DateTime
 {

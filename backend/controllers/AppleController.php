@@ -1,11 +1,9 @@
 <?php
-
 namespace backend\controllers;
 
 use backend\models\Apple;
 use backend\models\Color;
 use backend\utils\DateTime;
-use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
